@@ -1,0 +1,23 @@
+{
+  "name": "tcc-ebac-qa",
+  "type": "commonjs",
+  "version": "1.0.0",
+  "description": "Projeto QA envolvendo teste automatizado de UI, mobile e API.",
+  "main": "index.js",
+  "scripts": {
+    "api-test": "mocha 'API/tests/**/*.spec.mjs'",
+    "format": "prettier write ."
+  },
+  "keywords": [],
+  "author": "bruno-moleta-santos",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "chai": "^5.1.1",
+    "chai-things": "^0.2.0",
+    "dotenv": "^16.4.5",
+    "mocha": "^10.6.0",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
+  }
+}
