@@ -1,644 +1,554 @@
 {
-	"info": {
-		"_postman_id": "ddc983bd-e033-4814-9269-40c004f61f38",
-		"name": "Loja da EBAC",
-		"description": "Testes manuais de GET e POST da rota de 'coupons'.\n\nNecessário autenticação.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28070364"
-	},
-	"item": [
-		{
-			"name": "New Coupon - No Body 400",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Deve retornar 400 se o cliente não enviou corpo de requisição\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.include('Parâmetro(s) ausente(s)');\r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 400);\r",
-							"    pm.expect(jsonData.data).to.have.property('params');\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Coupon - Already exists 400",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Deve retornar 400 se o cliente não enviou corpo de requisição\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.include('O código de cupom já existe');\r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 400);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"code\": \"nomeCupom\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Coupon - No Token",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Quando o cliente não envia token deve retornar código (401) e mensagem\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.eql(\"Desculpe, você não possui permissão para criar recursos.\");\r",
-							"    \r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 401);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"code\": \"nomeCupomsssss98\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Coupon - No Auth 403",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.eql('Apenas administradores podem criar cupons.');\r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 403);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.eql('Apenas administradores podem criar cupons.');\r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 403);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "spokdasopdkasdopks",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"code\": \"nomeCupomsssss98\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Coupon - Success",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Deve criar cupom se o cliente enviou corpo de requisição correto\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('id');\r",
-							"    pm.expect(typeof jsonData.id).to.eql('number');\r",
-							"    \r",
-							"    pm.expect(jsonData).to.have.property('amount');\r",
-							"    pm.expect(typeof jsonData.amount).to.eql('string');\r",
-							"\r",
-							"    \r",
-							"    const valid_discount_types = [\r",
-							"        'percent', 'fixed_cart', 'fixed_product'];\r",
-							"    pm.expect(jsonData).to.have.property('discount_type');\r",
-							"    pm.expect(jsonData.discount_type).to.be.oneOf(valid_discount_types);\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('description');\r",
-							"    pm.expect(typeof jsonData.description).to.eql('string');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});\r",
-							"pm.test(\"Deve responder em até 1200ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"code\": \"nomeCupoma0000110\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All Coupons - Success",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Deve verificar se a lista contém as chaves obrigatórias\", function () {\r",
-							"    const responseJson = pm.response.json();\r",
-							"\r",
-							"    responseJson.forEach(function(item) {\r",
-							"        pm.expect(item).to.have.property('id');\r",
-							"        pm.expect(typeof item.id).to.eql('number');\r",
-							"        \r",
-							"        pm.expect(item).to.have.property('code');\r",
-							"        pm.expect(typeof item.code).to.eql('string');\r",
-							"\r",
-							"        pm.expect(item).to.have.property('amount');\r",
-							"        pm.expect(typeof item.amount).to.eql('string');\r",
-							"\r",
-							"        pm.expect(item).to.have.property('description');\r",
-							"        pm.expect(typeof item.description).to.eql('string');\r",
-							"\r",
-							"        pm.expect(item).to.have.property('discount_type');\r",
-							"        pm.expect(typeof item.discount_type).to.eql('string');\r",
-							"    });\r",
-							"});\r",
-							"pm.test(\"Código de retorno deve ser 200 OK\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test('Deve verificar se o nome dos cupons é único, nunca repetido.', function() {\r",
-							"    const responseJson = pm.response.json();\r",
-							"    const seenCodes = new Set();\r",
-							"\r",
-							"    responseJson.forEach(function(item) {\r",
-							"        seenCodes.add(item.code);\r",
-							"    });\r",
-							"    \r",
-							"    pm.expect(seenCodes.size).to.eql(responseJson.length, 'Nome de código repetido encontrado.');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Deve responder em até 1000ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All Coupons - No Token 401",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Quando o cliente não envia token deve retornar código (401) e mensagem\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.eql('Sem permissão para listar recursos.');\r",
-							"    \r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 401);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All Coupons - No Auth 403",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
-							"    const jsonData = pm.response.json();\r",
-							"\r",
-							"    pm.expect(jsonData).to.have.property('message');\r",
-							"    pm.expect(typeof jsonData.message).to.eql('string');\r",
-							"    pm.expect(jsonData.message).to.eql('Apenas administradores podem listar os cupons.');\r",
-							"    pm.expect(jsonData).to.have.property('data');\r",
-							"    pm.expect(jsonData.data).to.have.property('status', 403);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "idurjfsdfuopigrsdfuhgdsrfho",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
-					"host": [
-						"lojaebac",
-						"ebaconline",
-						"art",
-						"br"
-					],
-					"path": [
-						"wp-json",
-						"wc",
-						"v3",
-						"coupons"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "{{token}}",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	]
+  "info": {
+    "_postman_id": "ddc983bd-e033-4814-9269-40c004f61f38",
+    "name": "Loja da EBAC",
+    "description": "Testes manuais de GET e POST da rota de 'coupons'.\n\nNecessário autenticação.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28070364"
+  },
+  "item": [
+    {
+      "name": "New Coupon - No Body 400",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Deve retornar 400 se o cliente não enviou corpo de requisição\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.include('Parâmetro(s) ausente(s)');\r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 400);\r",
+              "    pm.expect(jsonData.data).to.have.property('params');\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Coupon - Already exists 400",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Deve retornar 400 se o cliente não enviou corpo de requisição\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.include('O código de cupom já existe');\r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 400);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"code\": \"nomeCupom\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Coupon - No Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Quando o cliente não envia token deve retornar código (401) e mensagem\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.eql(\"Desculpe, você não possui permissão para criar recursos.\");\r",
+              "    \r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 401);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"code\": \"nomeCupomsssss98\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Coupon - No Auth 403",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.eql('Apenas administradores podem criar cupons.');\r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 403);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.eql('Apenas administradores podem criar cupons.');\r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 403);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "spokdasopdkasdopks",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"code\": \"nomeCupomsssss98\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Coupon - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Deve criar cupom se o cliente enviou corpo de requisição correto\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('id');\r",
+              "    pm.expect(typeof jsonData.id).to.eql('number');\r",
+              "    \r",
+              "    pm.expect(jsonData).to.have.property('amount');\r",
+              "    pm.expect(typeof jsonData.amount).to.eql('string');\r",
+              "\r",
+              "    \r",
+              "    const valid_discount_types = [\r",
+              "        'percent', 'fixed_cart', 'fixed_product'];\r",
+              "    pm.expect(jsonData).to.have.property('discount_type');\r",
+              "    pm.expect(jsonData.discount_type).to.be.oneOf(valid_discount_types);\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('description');\r",
+              "    pm.expect(typeof jsonData.description).to.eql('string');\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "pm.test(\"Deve responder em até 1200ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"code\": \"nomeCupoma0000110\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "All Coupons - Success",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Deve verificar se a lista contém as chaves obrigatórias\", function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "\r",
+              "    responseJson.forEach(function(item) {\r",
+              "        pm.expect(item).to.have.property('id');\r",
+              "        pm.expect(typeof item.id).to.eql('number');\r",
+              "        \r",
+              "        pm.expect(item).to.have.property('code');\r",
+              "        pm.expect(typeof item.code).to.eql('string');\r",
+              "\r",
+              "        pm.expect(item).to.have.property('amount');\r",
+              "        pm.expect(typeof item.amount).to.eql('string');\r",
+              "\r",
+              "        pm.expect(item).to.have.property('description');\r",
+              "        pm.expect(typeof item.description).to.eql('string');\r",
+              "\r",
+              "        pm.expect(item).to.have.property('discount_type');\r",
+              "        pm.expect(typeof item.discount_type).to.eql('string');\r",
+              "    });\r",
+              "});\r",
+              "pm.test(\"Código de retorno deve ser 200 OK\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test('Deve verificar se o nome dos cupons é único, nunca repetido.', function() {\r",
+              "    const responseJson = pm.response.json();\r",
+              "    const seenCodes = new Set();\r",
+              "\r",
+              "    responseJson.forEach(function(item) {\r",
+              "        seenCodes.add(item.code);\r",
+              "    });\r",
+              "    \r",
+              "    pm.expect(seenCodes.size).to.eql(responseJson.length, 'Nome de código repetido encontrado.');\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Deve responder em até 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "YWRtaW5fZWJhYzpAYWRtaW4hJmJAYyEyMDIy",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "All Coupons - No Token 401",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Quando o cliente não envia token deve retornar código (401) e mensagem\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.eql('Sem permissão para listar recursos.');\r",
+              "    \r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 401);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "All Coupons - No Auth 403",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
+              "    pm.expect(jsonData.message).to.eql('Apenas administradores podem listar os cupons.');\r",
+              "    pm.expect(jsonData).to.have.property('data');\r",
+              "    pm.expect(jsonData.data).to.have.property('status', 403);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "idurjfsdfuopigrsdfuhgdsrfho",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/wp-json/wc/v3/coupons",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["wp-json", "wc", "v3", "coupons"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ]
 }
