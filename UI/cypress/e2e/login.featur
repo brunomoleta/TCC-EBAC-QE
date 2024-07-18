@@ -16,7 +16,7 @@ Feature: Login
 
   Scenario: Realizo o login com email inexistente
     When você insere email incorreto
-    Then o sistema traz uma mensagem de erro perguntando se você quer se cadastrar
+    Then o sistema traz uma mensagem de erro que te auxilia
 
   Scenario: Realizo o login com senha incorreta
     When você insere senha incorreta
