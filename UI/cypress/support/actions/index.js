@@ -1,2 +1,4 @@
-require('./login')
-require('./utils')
+require("./login");
+require("./addToCart");
+
+require("./utils");

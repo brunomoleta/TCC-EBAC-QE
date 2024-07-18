@@ -1,1 +1,1 @@
-require('./actions')
+require("./actions");
