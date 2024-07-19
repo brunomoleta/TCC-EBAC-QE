@@ -5,7 +5,7 @@
   "description": "Projeto QA envolvendo teste automatizado de UI, mobile e API.",
   "main": "index.js",
   "scripts": {
-    "test-api": "mocha 'API/tests/**/*.spec.mjs'",
+    "test-api": "mocha 'API/tests/**/*.spec.mjs' --reporter mochawesome --reporter-options reportDir=./API/apiReporter",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "format": "prettier --write '**/*.{js,json,mjs}'",
@@ -16,10 +16,12 @@
   "keywords": [],
   "author": "bruno-moleta-santos",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^20.1.0",
     "@cypress/webpack-preprocessor": "^6.0.2",
     "@faker-js/faker": "^8.4.1",
+    "allure-commandline": "^2.29.0",
+    "allure-mocha": "3.0.0-beta.7",
     "chai": "^5.1.1",
     "chai-things": "^0.2.0",
     "cypress": "^13.13.1",
