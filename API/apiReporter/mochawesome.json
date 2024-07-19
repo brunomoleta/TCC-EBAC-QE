@@ -1,0 +1,733 @@
+{
+  "stats": {
+    "suites": 10,
+    "tests": 16,
+    "passes": 12,
+    "pending": 0,
+    "failures": 4,
+    "start": "2024-07-19T15:29:38.997Z",
+    "end": "2024-07-19T15:29:42.951Z",
+    "duration": 3954,
+    "testsRegistered": 16,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "597e3cad-d928-46d0-a410-45a678b60afe",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6cc5207d-2f13-4aed-af7d-bff8610107e8",
+          "title": "Dado que você está fazendo um GET na rota de cupons da API",
+          "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\getCoupons.spec.mjs",
+          "file": "\\API\\tests\\getCoupons.spec.mjs",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "b3676fe0-1848-4118-9149-69da5dd8422f",
+              "title": "Quando é feita uma requisição com autenticação e autorização",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\getCoupons.spec.mjs",
+              "file": "\\API\\tests\\getCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é feita uma requisição com autenticação e autorização\"",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição com autenticação e autorização \"before all\" hook in \"Quando é feita uma requisição com autenticação e autorização\"",
+                  "timedOut": false,
+                  "duration": 834,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "response = await request(apiUrl)\n    .get(apiRoute)\n    .set(\"Authorization\", `Bearer ${token}`)",
+                  "err": {},
+                  "uuid": "e59c256a-5caf-483b-b54a-8938e238ff8b",
+                  "parentUUID": "b3676fe0-1848-4118-9149-69da5dd8422f",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar a lista dos cupons ativos.",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição com autenticação e autorização Deve retornar a lista dos cupons ativos.",
+                  "timedOut": false,
+                  "duration": 7,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.be.an('array').that.is.not.empty;\njsonData.forEach(item => {\n    expect(item).to.be.an('object');\n    expect(item).to.have.property('id');\n    expect(item.id).to.be.a('number');\n    expect(item).to.have.property('code');\n    expect(item.code).to.be.a('string');\n    expect(item).to.have.property('amount');\n    expect(item.amount).to.be.a('string');\n    expect(item).to.have.property('description');\n    expect(item.description).to.be.a('string');\n    expect(item).to.have.property('discount_type');\n    expect(item.discount_type).to.be.a('string');\n});",
+                  "err": {},
+                  "uuid": "ee469459-1a6c-400b-a89f-1a4b80509795",
+                  "parentUUID": "b3676fe0-1848-4118-9149-69da5dd8422f",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 200",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição com autenticação e autorização Deve retornar status 200",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.status).to.equal(200);",
+                  "err": {},
+                  "uuid": "f91b0412-106f-4a79-b35f-58c0678ada98",
+                  "parentUUID": "b3676fe0-1848-4118-9149-69da5dd8422f",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "ee469459-1a6c-400b-a89f-1a4b80509795",
+                "f91b0412-106f-4a79-b35f-58c0678ada98"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 8,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "1883c8b9-28f9-4926-b459-56f903a475c2",
+              "title": "Quando é feita uma requisição sem token de autenticação",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\getCoupons.spec.mjs",
+              "file": "\\API\\tests\\getCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é feita uma requisição sem token de autenticação\"",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição sem token de autenticação \"before all\" hook in \"Quando é feita uma requisição sem token de autenticação\"",
+                  "timedOut": false,
+                  "duration": 304,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "if (!scenario.auth) {\n    response = await request(apiUrl).get(apiRoute);\n} else {\n    response = await request(apiUrl)\n        .get(apiRoute)\n        .set(\"Authorization\", `Bearer ${scenario.auth}`);\n}",
+                  "err": {},
+                  "uuid": "f123859f-a489-4bf9-ba3c-3d7792e9410d",
+                  "parentUUID": "1883c8b9-28f9-4926-b459-56f903a475c2",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar uma mensagem de erro.",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição sem token de autenticação Deve retornar uma mensagem de erro.",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property('message');\nexpect(jsonData.message).to.be.a('string');\nexpect(jsonData.message).to.eql(errorMessage);",
+                  "err": {},
+                  "uuid": "a250c499-3700-4ab2-9d7d-481e0f1f9f84",
+                  "parentUUID": "1883c8b9-28f9-4926-b459-56f903a475c2",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 401",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição sem token de autenticação Deve retornar status 401",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.status).to.equal(scenario.errorCode);",
+                  "err": {},
+                  "uuid": "85285605-6729-4163-a8f4-589960106f64",
+                  "parentUUID": "1883c8b9-28f9-4926-b459-56f903a475c2",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "a250c499-3700-4ab2-9d7d-481e0f1f9f84",
+                "85285605-6729-4163-a8f4-589960106f64"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "28419a1b-c46f-472a-b29a-c5eddb7f6761",
+              "title": "Quando é feita uma requisição com token autenticado porém sem autorização",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\getCoupons.spec.mjs",
+              "file": "\\API\\tests\\getCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é feita uma requisição com token autenticado porém sem autorização\"",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição com token autenticado porém sem autorização \"before all\" hook in \"Quando é feita uma requisição com token autenticado porém sem autorização\"",
+                  "timedOut": false,
+                  "duration": 360,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "if (!scenario.auth) {\n    response = await request(apiUrl).get(apiRoute);\n} else {\n    response = await request(apiUrl)\n        .get(apiRoute)\n        .set(\"Authorization\", `Bearer ${scenario.auth}`);\n}",
+                  "err": {},
+                  "uuid": "3b5c98f3-1a56-4f3a-8a3f-b6f965bab302",
+                  "parentUUID": "28419a1b-c46f-472a-b29a-c5eddb7f6761",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar uma mensagem de erro.",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição com token autenticado porém sem autorização Deve retornar uma mensagem de erro.",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property('message');\nexpect(jsonData.message).to.be.a('string');\nexpect(jsonData.message).to.eql(errorMessage);",
+                  "err": {
+                    "message": "AssertionError: expected '<strong>Erro</strong>: A senha inform…' to deeply equal 'Sem permissão para listar recursos.'",
+                    "estack": "AssertionError: expected '<strong>Erro</strong>: A senha inform…' to deeply equal 'Sem permissão para listar recursos.'\n    at Context.<anonymous> (file:///D:/Users/Bruno/Documents/Development/Ebac/QA/M-34%20Trabalho%20Final/TCC-EBAC-QE/API/tests/getCoupons.spec.mjs:67:45)\n    at process.processImmediate (node:internal/timers:478:21)",
+                    "diff": "- <strong>Erro</strong>: A senha informada para o usuário <strong>admin_ebac</strong> está incorreta. <a href=\"http://lojaebac.ebaconline.art.br/minha-conta/lost-password/\">Perdeu a senha?</a>\n+ Sem permissão para listar recursos.\n"
+                  },
+                  "uuid": "70fa3f79-474e-4884-95e6-d1f7614f680e",
+                  "parentUUID": "28419a1b-c46f-472a-b29a-c5eddb7f6761",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 401",
+                  "fullTitle": "Dado que você está fazendo um GET na rota de cupons da API Quando é feita uma requisição com token autenticado porém sem autorização Deve retornar status 401",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.status).to.equal(scenario.errorCode);",
+                  "err": {
+                    "message": "AssertionError: expected 500 to equal 401",
+                    "estack": "AssertionError: expected 500 to equal 401\n    at Context.<anonymous> (file:///D:/Users/Bruno/Documents/Development/Ebac/QA/M-34%20Trabalho%20Final/TCC-EBAC-QE/API/tests/getCoupons.spec.mjs:71:44)\n    at process.processImmediate (node:internal/timers:478:21)",
+                    "diff": "- 500\n+ 401\n"
+                  },
+                  "uuid": "9196909a-2eed-4aee-b25b-32ad3f7aa576",
+                  "parentUUID": "28419a1b-c46f-472a-b29a-c5eddb7f6761",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "70fa3f79-474e-4884-95e6-d1f7614f680e",
+                "9196909a-2eed-4aee-b25b-32ad3f7aa576"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 2,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "09b4f517-3fab-4611-86e1-2e0bffe2ee3e",
+          "title": "Dado que você está fazendo um POST na rota de cupons da API",
+          "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\postCoupons.spec.mjs",
+          "file": "\\API\\tests\\postCoupons.spec.mjs",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "320d93fa-3292-4e7b-973d-57410dd27870",
+              "title": "Quando é enviado um corpo de requisição inválido",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\postCoupons.spec.mjs",
+              "file": "\\API\\tests\\postCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é enviado um corpo de requisição inválido\"",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é enviado um corpo de requisição inválido \"before all\" hook in \"Quando é enviado um corpo de requisição inválido\"",
+                  "timedOut": false,
+                  "duration": 352,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "response = await request(apiUrl)\n    .post(apiRoute)\n    .set(\"Authorization\", `Bearer ${token}`)\n    .send({});",
+                  "err": {},
+                  "uuid": "27353cac-4244-40f5-97b7-4813e1e0e176",
+                  "parentUUID": "320d93fa-3292-4e7b-973d-57410dd27870",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar mensagem de erro que auxilie o cliente.",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é enviado um corpo de requisição inválido Deve retornar mensagem de erro que auxilie o cliente.",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property(\"message\");\nexpect(typeof jsonData.message).to.eql(\"string\");\nexpect(jsonData.message).to.include(wrongBody);\nexpect(jsonData).to.have.property(\"data\");\nexpect(jsonData.data).to.have.property(\"params\");",
+                  "err": {},
+                  "uuid": "f8aea666-8437-4026-95f4-07eee56d07dc",
+                  "parentUUID": "320d93fa-3292-4e7b-973d-57410dd27870",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 400",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é enviado um corpo de requisição inválido Deve retornar status 400",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.status).to.equal(400);",
+                  "err": {},
+                  "uuid": "a68ad755-83b5-467e-ab1e-b991c2e4a85e",
+                  "parentUUID": "320d93fa-3292-4e7b-973d-57410dd27870",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "f8aea666-8437-4026-95f4-07eee56d07dc",
+                "a68ad755-83b5-467e-ab1e-b991c2e4a85e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 1,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "d9194aa8-ad67-4eb5-8ea0-43d29801c9f8",
+              "title": "Quando é enviado um corpo com um nome de código que já existe.",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\postCoupons.spec.mjs",
+              "file": "\\API\\tests\\postCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é enviado um corpo com um nome de código que já existe.\"",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é enviado um corpo com um nome de código que já existe. \"before all\" hook in \"Quando é enviado um corpo com um nome de código que já existe.\"",
+                  "timedOut": false,
+                  "duration": 331,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "response = await request(apiUrl)\n    .post(apiRoute)\n    .set(\"Authorization\", `Bearer ${token}`)\n    .send(existingCoupon);",
+                  "err": {},
+                  "uuid": "81282d2d-0338-4411-ac19-521e26a88d48",
+                  "parentUUID": "d9194aa8-ad67-4eb5-8ea0-43d29801c9f8",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar mensagem de erro",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é enviado um corpo com um nome de código que já existe. Deve retornar mensagem de erro",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property(\"message\");\nexpect(jsonData.message).to.be.a(\"string\");\nexpect(jsonData.message).to.contain(invalidName);",
+                  "err": {},
+                  "uuid": "1bedc4b9-ce10-4264-a1b7-eb5ab6470538",
+                  "parentUUID": "d9194aa8-ad67-4eb5-8ea0-43d29801c9f8",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 400",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é enviado um corpo com um nome de código que já existe. Deve retornar status 400",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.statusCode).to.equal(400);",
+                  "err": {},
+                  "uuid": "61f8cbe5-c84c-4069-ad57-d6affcc27998",
+                  "parentUUID": "d9194aa8-ad67-4eb5-8ea0-43d29801c9f8",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "1bedc4b9-ce10-4264-a1b7-eb5ab6470538",
+                "61f8cbe5-c84c-4069-ad57-d6affcc27998"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "9bee86ff-e3ab-4416-8873-b512579ba33d",
+              "title": "Quando são enviados dados válidos com token autenticado",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\postCoupons.spec.mjs",
+              "file": "\\API\\tests\\postCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando são enviados dados válidos com token autenticado\"",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando são enviados dados válidos com token autenticado \"before all\" hook in \"Quando são enviados dados válidos com token autenticado\"",
+                  "timedOut": false,
+                  "duration": 973,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "response = await request(apiUrl)\n    .post(apiRoute)\n    .set(\"Authorization\", `Bearer ${token}`)\n    .send(newCoupon);",
+                  "err": {},
+                  "uuid": "3bb38988-d32f-4cfa-bd2d-7ea44815eaf6",
+                  "parentUUID": "9bee86ff-e3ab-4416-8873-b512579ba33d",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar o objeto com os itens esperados (CONTRATO).",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando são enviados dados válidos com token autenticado Deve retornar o objeto com os itens esperados (CONTRATO).",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property(\"id\");\nexpect(jsonData.id).to.be.a(\"number\");\nexpect(jsonData).to.have.property(\"amount\");\nexpect(jsonData.amount).to.be.a(\"string\");\nexpect(jsonData).to.have.property(\"discount_type\");\nexpect(valid_discount_types).to.include(jsonData.discount_type);\nexpect(jsonData).to.have.property(\"description\");\nexpect(jsonData.description).to.be.a(\"string\");",
+                  "err": {},
+                  "uuid": "b448bcb4-9e89-4171-a80a-16eb40b53811",
+                  "parentUUID": "9bee86ff-e3ab-4416-8873-b512579ba33d",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 201",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando são enviados dados válidos com token autenticado Deve retornar status 201",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.statusCode).to.equal(201);",
+                  "err": {},
+                  "uuid": "073faa46-95dd-4c84-866e-b6d6a070fc53",
+                  "parentUUID": "9bee86ff-e3ab-4416-8873-b512579ba33d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "b448bcb4-9e89-4171-a80a-16eb40b53811",
+                "073faa46-95dd-4c84-866e-b6d6a070fc53"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "fdb5be93-cb73-4e8c-88cc-f7082dc0569a",
+              "title": "Quando é feita uma requisição sem token de autenticação",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\postCoupons.spec.mjs",
+              "file": "\\API\\tests\\postCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é feita uma requisição sem token de autenticação\"",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é feita uma requisição sem token de autenticação \"before all\" hook in \"Quando é feita uma requisição sem token de autenticação\"",
+                  "timedOut": false,
+                  "duration": 434,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "if (!scenario.auth) {\n    response = await request(apiUrl).get(apiRoute)\n        .send(newCoupon);\n} else {\n    response = await request(apiUrl)\n        .get(apiRoute)\n        .set(\"Authorization\", `Bearer ${scenario.auth}`)\n        .send(newCoupon);\n}",
+                  "err": {},
+                  "uuid": "c9b04298-0ee7-44f0-8a4d-96d3e088d2af",
+                  "parentUUID": "fdb5be93-cb73-4e8c-88cc-f7082dc0569a",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar mensagem de erro que orienta o cliente",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é feita uma requisição sem token de autenticação Deve retornar mensagem de erro que orienta o cliente",
+                  "timedOut": false,
+                  "duration": 1,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property(\"message\");\nexpect(jsonData.message).to.be.a(\"string\");\nexpect(jsonData.message).to.contain(noToken);",
+                  "err": {},
+                  "uuid": "d51f7191-6a1b-42df-84f9-9f0245dea2f0",
+                  "parentUUID": "fdb5be93-cb73-4e8c-88cc-f7082dc0569a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 401",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é feita uma requisição sem token de autenticação Deve retornar status 401",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.statusCode).to.equal(401);",
+                  "err": {},
+                  "uuid": "d830154a-551d-4d4a-8c2d-ac0712ae8a60",
+                  "parentUUID": "fdb5be93-cb73-4e8c-88cc-f7082dc0569a",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "d51f7191-6a1b-42df-84f9-9f0245dea2f0",
+                "d830154a-551d-4d4a-8c2d-ac0712ae8a60"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 1,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "2f5c48ff-1526-4c25-9eae-80e71cd03def",
+              "title": "Quando é feita uma requisição com token autenticado porém sem autorização",
+              "fullFile": "D:\\Users\\Bruno\\Documents\\Development\\Ebac\\QA\\M-34 Trabalho Final\\TCC-EBAC-QE\\API\\tests\\postCoupons.spec.mjs",
+              "file": "\\API\\tests\\postCoupons.spec.mjs",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"Quando é feita uma requisição com token autenticado porém sem autorização\"",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é feita uma requisição com token autenticado porém sem autorização \"before all\" hook in \"Quando é feita uma requisição com token autenticado porém sem autorização\"",
+                  "timedOut": false,
+                  "duration": 323,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "if (!scenario.auth) {\n    response = await request(apiUrl).get(apiRoute)\n        .send(newCoupon);\n} else {\n    response = await request(apiUrl)\n        .get(apiRoute)\n        .set(\"Authorization\", `Bearer ${scenario.auth}`)\n        .send(newCoupon);\n}",
+                  "err": {},
+                  "uuid": "b32175e2-88df-45da-a3a7-64a67c373fc6",
+                  "parentUUID": "2f5c48ff-1526-4c25-9eae-80e71cd03def",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar mensagem de erro que orienta o cliente",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é feita uma requisição com token autenticado porém sem autorização Deve retornar mensagem de erro que orienta o cliente",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const jsonData = response.body;\nexpect(jsonData).to.have.property(\"message\");\nexpect(jsonData.message).to.be.a(\"string\");\nexpect(jsonData.message).to.contain(noToken);",
+                  "err": {
+                    "message": "AssertionError: expected '<strong>Erro</strong>: A senha inform…' to include 'Sem permissão para listar recursos.'",
+                    "estack": "AssertionError: expected '<strong>Erro</strong>: A senha inform…' to include 'Sem permissão para listar recursos.'\n    at Context.<anonymous> (file:///D:/Users/Bruno/Documents/Development/Ebac/QA/M-34%20Trabalho%20Final/TCC-EBAC-QE/API/tests/postCoupons.spec.mjs:111:45)\n    at process.processImmediate (node:internal/timers:478:21)",
+                    "diff": null
+                  },
+                  "uuid": "3eaf4b42-92ad-4ec6-8de3-c29debd4b24c",
+                  "parentUUID": "2f5c48ff-1526-4c25-9eae-80e71cd03def",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar status 401",
+                  "fullTitle": "Dado que você está fazendo um POST na rota de cupons da API Quando é feita uma requisição com token autenticado porém sem autorização Deve retornar status 401",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "expect(response.statusCode).to.equal(401);",
+                  "err": {
+                    "message": "AssertionError: expected 500 to equal 401",
+                    "estack": "AssertionError: expected 500 to equal 401\n    at Context.<anonymous> (file:///D:/Users/Bruno/Documents/Development/Ebac/QA/M-34%20Trabalho%20Final/TCC-EBAC-QE/API/tests/postCoupons.spec.mjs:114:48)\n    at process.processImmediate (node:internal/timers:478:21)",
+                    "diff": "- 500\n+ 401\n"
+                  },
+                  "uuid": "b51b15d5-49c8-44f1-9773-a46fb70adf74",
+                  "parentUUID": "2f5c48ff-1526-4c25-9eae-80e71cd03def",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "3eaf4b42-92ad-4ec6-8de3-c29debd4b24c",
+                "b51b15d5-49c8-44f1-9773-a46fb70adf74"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.6.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./API/apiReporter"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
