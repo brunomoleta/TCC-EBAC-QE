@@ -1,4 +1,4 @@
-Feature: Login
+Feature: LoginRequest
   Como cliente da EBAC-SHOP
   Quero fazer o login (autenticação) na plataforma
   Para visualizar meus pedidos
