@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test-api": "mocha 'API/tests/**/*.spec.mjs' --reporter mochawesome --reporter-options reportDir=./API/apiReporter",
+    "test-performance": "k6 run performance/tests/login.test.js",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "format": "prettier --write '**/*.{js,json,mjs}'",
@@ -31,5 +32,8 @@
     "mochawesome-merge": "^4.3.0",
     "prettier": "^3.3.3",
     "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "k6": "^0.0.0"
   }
 }
