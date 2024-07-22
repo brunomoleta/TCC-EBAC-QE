@@ -45,4 +45,4 @@ services:
     depends_on:
       - influxdb
       - grafana
-    command: "run /home/k6/login.test.js"
+    command: "run /tests/login.test.js"
