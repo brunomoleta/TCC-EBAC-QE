@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress UI test suite
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        with:
+          browser: chrome
+          headless: true
+          run: npm run cy:run
+
+      - name: Run Supertest API test suite
+        run: npm run test-api
+
+      - name: Publish report
+        run: mv ./mochawesome-report/* ./reports
+
+      - name: Archive test reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test-Reports
+          path: ./reports/*
+          github_token: ${{ secrets.GITHUB_TOKEN }}
