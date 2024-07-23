@@ -25,7 +25,9 @@ When("você não insere dados", () => {
 Then(
   "o sistema traz uma mensagem de erro e não envia os dados para a API",
   () => {
-    cy.errorResponse("Erro: Nome de usuário é obrigatório.");
+    cy.fixture("errorMessages.json").then((data) => {
+      cy.errorResponse(data.corpoVazio);
+    });
     cy.noApiRequest();
   },
 );
@@ -36,9 +38,9 @@ When("você insere email incorreto", () => {
 });
 
 Then("o sistema traz uma mensagem de erro que te auxilia", () => {
-  cy.errorResponse(
-    "Endereço de e-mail desconhecido. Verifique novamente ou tente seu nome de usuário.",
-  );
+  cy.fixture("errorMessages.json").then((data) => {
+    cy.errorResponse(data.emailDesconhecido);
+  });
 });
 
 When("você insere senha incorreta", () => {
@@ -47,6 +49,20 @@ When("você insere senha incorreta", () => {
 });
 
 Then("o sistema traz mensagem de erro que te orienta", () => {
-  cy.errorResponse(`Erro: A senha fornecida para o e-mail`);
-  cy.errorResponse(`está incorreta. Perdeu a senha?`);
+  cy.fixture("errorMessages.json").then((data) => {
+    cy.errorResponse(data.senhaIncorreta);
+  });
 });
+
+When("você insere uma senha incorreta três vezes seguidas", () => {
+  cy.fillWrongDataMultipleTimes();
+});
+
+Then(
+  "o sistema traz mensagem de erro e bloqueia o login temporariamente",
+  () => {
+    cy.fixture("errorMessages.json").then((data) => {
+      cy.errorResponse(data.acessoBloqueado);
+    });
+  },
+);
