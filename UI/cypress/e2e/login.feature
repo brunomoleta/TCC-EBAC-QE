@@ -21,3 +21,7 @@ Feature: LoginRequest
   Scenario: Realizo o login com senha incorreta
     When você insere senha incorreta
     Then o sistema traz mensagem de erro que te orienta
+
+  Scenario: Realizo o login com senha incorreta quatro(4) vezes seguidas
+    When você insere uma senha incorreta três vezes seguidas
+    Then o sistema traz mensagem de erro e bloqueia o login temporariamente

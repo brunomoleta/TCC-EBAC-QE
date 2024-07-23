@@ -1,0 +1,8 @@
+{
+  "quantidadeExcessiva": "Erro: A quantidade máxima de produtos por consumidor é de 10",
+  "emailDesconhecido": "Endereço de e-mail desconhecido. Verifique novamente ou tente seu nome de usuário.",
+  "senhaIncorreta": "está incorreta. Perdeu a senha?",
+  "acessoBloqueado": "Erro: O sistema foi bloqueado por 15 minutos por causa do erro repetido. Por favor aguarde.",
+  "corpoVazio": "Erro: Nome de usuário é obrigatório.",
+  "valorTotalCompraExcessivo": "Erro: O valor total de uma compra é de R$990,00."
+}
