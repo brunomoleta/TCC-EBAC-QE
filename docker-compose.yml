@@ -1,5 +1,3 @@
-version: '3.4'
-
 networks:
   k6:
   grafana:
@@ -33,7 +31,7 @@ services:
       - influxdb
 
   k6:
-    image: loadimpact/k6:latest
+    image: grafana/k6
     networks:
       - k6
     ports:
@@ -41,8 +39,8 @@ services:
     environment:
       - K6_OUT=influxdb=http://influxdb:8086/k6
     volumes:
-      - "./performance:/tests"
+      - "./performance:/performance"
     depends_on:
       - influxdb
       - grafana
-    command: "run /tests/login.test.js"
+    command: "run /performance/tests/login.test.js"
