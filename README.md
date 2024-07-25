@@ -134,17 +134,3 @@ pnpm test-api
 docker-compose up
 
 ---
-
-
-
-## 🌐 Ambientes
-
-Você pode conferir todas as telas, URLs, figma (handoff e protótipo) nessa [seção](https://www.figma.com/files/team/967209169610262615/Lacrei-Sa%C3%BAde?fuid=1329588815467183710).
-
-Veja a página de ambientes no notion para os links atualizados por ambiente: https://www.notion.so/lacrei/Ambientes-da-Lacrei-production-staging-preview-90fc9f4b23854cf98be51ea36fcae407
-
----
-
-### Utilidades
-
-- src/utils: pasta com utilidades usadas no projeto.
