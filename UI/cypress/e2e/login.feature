@@ -6,50 +6,23 @@ Feature: LoginRequest
   Background:
     Given você acessa o formulário de login
 
-  Scenario Outline: Faço login com dados válidos no <browser
+  Scenario: Faço login com dados válidos
     When você insere dados de registro válidos
     Then você é direcionado para o seu dashboard
-    Examples:
-      | browser |
-      | Chrome  |
-      | Firefox |
-      | Edge    |
 
-  Scenario Outline: Tento realizar login sem enviar dados no <browser
+  Scenario: Tento realizar login sem enviar dados
     When você não insere dados
     Then o sistema traz uma mensagem de erro e não envia os dados para a API
-    Examples:
-      | browser |
-      | Chrome  |
-      | Firefox |
-      | Edge    |
 
-
-  Scenario Outline: Tento realizar o login com email inexistente no <browser
+  Scenario: Tento realizar o login com email inexistente
     When você insere email incorreto
     Then o sistema traz uma mensagem de erro que te auxilia
-    Examples:
-      | browser |
-      | Chrome  |
-      | Firefox |
-      | Edge    |
 
-
-  Scenario Outline: Tento realizar o login com senha incorreta no <browser
+  Scenario: Tento realizar o login com senha incorreta
     When você insere senha incorreta
     Then o sistema traz mensagem de erro que te orienta
-    Examples:
-      | browser |
-      | Chrome  |
-      | Firefox |
-      | Edge    |
 
 
-  Scenario Outline: Tento realizar o login com senha incorreta três(3) vezes seguidas no <browser
+  Scenario: Tento realizar o login com senha incorreta três(3) vezes seguidas no
     When você insere uma senha incorreta três vezes seguidas
     Then o sistema traz mensagem de erro e bloqueia o login temporariamente
-    Examples:
-      | browser |
-      | Chrome  |
-      | Firefox |
-      | Edge    |
