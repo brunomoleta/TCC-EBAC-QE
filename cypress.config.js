@@ -30,6 +30,13 @@ async function setupNodeEvents(on, config) {
       },
     }),
   );
+
+  on("before:browser:launch", (browser = {}) => {
+    // Update screenshot folder based on browser name
+    const browserName = browser.name;
+    config.screenshotsFolder = `UI/cypress/screenshots/${browserName}`;
+  });
+
   return config;
 }
 

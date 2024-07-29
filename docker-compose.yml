@@ -43,4 +43,4 @@ services:
     depends_on:
       - influxdb
       - grafana
-    command: "run /performance/tests/login.test.js"
+    command: "run /performance/test/login.test.js"
