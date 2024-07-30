@@ -49,6 +49,7 @@
     "@wdio/local-runner": "^8.39.1",
     "@wdio/mocha-framework": "^8.39.0",
     "@wdio/spec-reporter": "^8.39.0",
+    "expect.js": "^0.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
