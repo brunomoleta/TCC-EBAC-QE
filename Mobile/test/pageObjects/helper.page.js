@@ -1,23 +1,33 @@
-import { $ } from "@wdio/globals";
+const {$} = require("@wdio/globals");
+const expect = require("expect.js");
 
-export class Helper {
-  async getElementById(id, isAccessibilityId) {
-    if (isAccessibilityId) {
-      return await $(`~ ${id}`);
+class Helper {
+    async getElementById(id, isAccessibilityId = false) {
+        if (isAccessibilityId) {
+            return await $(`~ ${id}`);
+        }
+        return await $(`id:${id}`);
     }
-    return await $(`id:${id}`);
-  }
 
-  async typeData(id, text, isAccessibility) {
-    const element = await this.getElementById(id, isAccessibility);
-    await element.setValue(text);
-  }
+    async getElementByXPath(text, isText = true) {
+        if (isText) {
+            return await $(`//android.widget.TextView[@text="${text}"]`);
+        }
+        return await $(`//android.view.View[@content-desc="${text}"]`);
+    }
 
-  async openTab(tab) {
-    await this.getElementById(tab, false).click();
-  }
+    async typeData(id, text, isAccessibility) {
+        const element = await this.getElementById(id, isAccessibility);
+        await element.setValue(text);
+    }
 
-  async openAccTab(tab) {
-    await (await this.getElementById(tab, true)).click();
-  }
+    async checkElementDisplayByText(text, isText = true) {
+        const element = await this.getElementByXPath(text, isText);
+        const isDisplayed = await element.isDisplayed();
+
+        expect(isDisplayed).to.be.ok(`Elemento com texto "${text}" deve estar em tela`);
+
+    }
 }
+
+module.exports = Helper;
