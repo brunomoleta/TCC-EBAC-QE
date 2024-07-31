@@ -7,12 +7,12 @@ const hooksConf = {
     context,
     { error, result, duration, passed, retries },
   ) {
+
     await driver.takeScreenshot();
     await driver.execute("mobile: terminateApp", {
       bundleId: "br.com.lojaebac",
     });
   },
-  // beforeSuite: async function() {
   beforeTest: async function () {
     let state = await driver.queryAppState("br.com.lojaebac");
     if (state !== 4) {

@@ -1,5 +1,5 @@
 const specsConf = {
-  specs: ["../test/specs/*.e2e.js"],
+  specs: ["../test/specs/**/*.e2e.js"],
 };
 
 module.exports = specsConf;
