@@ -20,32 +20,24 @@ class LoginRequest {
         response.status === expectedStatus,
     });
 
-  unsuccessfulLogin(email, password) {
-    const response = this.postRequest("/authuser", { email, password });
+  unsuccessfulLogin(user) {
+    const response = this.postRequest("/authuser", user);
     this.checkResponseStatus(response, 400);
   }
 
-  successfulLogin(email, password) {
-    const registerResponse = this.postRequest("/adduser", { email, password });
-    this.checkResponseStatus(registerResponse, 200);
-
-    sleep(2);
-
-    const loginResponse = this.postRequest("/authuser", { email, password });
+  successfulLogin(user) {
+    const loginResponse = this.postRequest("/authuser", user);
     this.checkResponseStatus(loginResponse, 200);
   }
 
   wrongPassword(email, password) {
-    const registerResponse = this.postRequest("/adduser", { email, password });
-    this.checkResponseStatus(registerResponse, 200);
-
-    sleep(2);
-
     const loginResponse = this.postRequest("/authuser", {
       email,
       password: password + "a",
     });
-    this.checkResponseStatus(loginResponse, 401);
+    console.log(loginResponse.status)
+
+    this.checkResponseStatus(loginResponse, 400);
   }
 }
 

@@ -5,9 +5,13 @@ function generateRandomCharacter() {
   return chars[randomIndex];
 }
 
-const user = {
+const randomUser = {
   email: `${generateRandomCharacter()}-${Math.random()}_ebac`,
   password,
 };
+const successUser = {
+  email: 'user_ebac@gmail.com',
+  password,
+};
 
-module.exports = { user };
+module.exports = { randomUser, successUser };
