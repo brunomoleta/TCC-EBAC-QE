@@ -7,7 +7,6 @@ const hooksConf = {
     context,
     { error, result, duration, passed, retries },
   ) {
-
     await driver.takeScreenshot();
     await driver.execute("mobile: terminateApp", {
       bundleId: "br.com.lojaebac",

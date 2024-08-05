@@ -10,7 +10,7 @@ const randomUser = {
   password,
 };
 const successUser = {
-  email: 'user_ebac@gmail.com',
+  email: "user_ebac@gmail.com",
   password,
 };
 

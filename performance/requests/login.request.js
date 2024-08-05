@@ -1,5 +1,5 @@
 const http = require("k6/http");
-const { check, sleep } = require("k6");
+const { check } = require("k6");
 
 class LoginRequest {
   constructor() {
@@ -35,7 +35,7 @@ class LoginRequest {
       email,
       password: password + "a",
     });
-    console.log(loginResponse.status)
+    console.log(loginResponse.status);
 
     this.checkResponseStatus(loginResponse, 400);
   }

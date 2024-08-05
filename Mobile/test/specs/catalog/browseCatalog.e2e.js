@@ -7,12 +7,12 @@ const buttonPage = new ButtonPage();
 const helperPage = new HelperPage();
 
 context("Dado que você quer navegar pelos produtos", () => {
-    describe("Quando você clica para ir à página de navegação", () => {
-        it("Você visualiza quatro produtos ou mais.", async () => {
-            await buttonPage.browseProducts();
-            await catalogPage.allProductsPage();
+  describe("Quando você clica para ir à página de navegação", () => {
+    it("Você visualiza quatro produtos ou mais.", async () => {
+      await buttonPage.browseProducts();
+      await catalogPage.allProductsPage();
 
-            await helperPage.returnToHomePage(true);
-        });
+      await helperPage.returnToHomePage(true);
     });
+  });
 });
