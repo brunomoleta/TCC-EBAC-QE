@@ -8,8 +8,10 @@ envolvendo testes automatizados de UI, mobile e API.
 ## Índice
 
 - [Visão Geral](#-visão-geral)
-  - [Objetivo](#-objetivo)
   - [Ponto de partida](#-ponto-de-partida)
+    - [Sistema](#-sistema-)
+    - [Ponto de partida](#-casos-de-testes)
+  - [Objetivo](#-objetivo)
   - [Responsabilidade](#-responsabilidade)
   - [Público alvo](#-público-alvo)
   - [Estratégia de testes](#-Estratégia-de-testes)
@@ -44,6 +46,25 @@ envolvendo testes automatizados de UI, mobile e API.
 
 ## 👁️ Visão Geral
 
+### 🎬 Ponto de partida
+
+#### 🎰 Sistema 
+
+Ecommerce de roupas que tem funcionalidades de:
+
+- Registro e Login;
+- Favoritar itens;
+- Colocar itens no carrinho e escolher a quantidade de cada um;
+- Cadastros de:
+  - Conta;
+  - Endereço;
+  - Métodos de pagamento;
+- Finalização da compra e acompanhamento da entrega;
+
+#### 👨🏽 Casos de teste
+
+Casos de testes detalhados presentes em [histórias de usuários](./docs/M34%20-%20historias_de_usuario.pdf).
+
 ### 🥅 Objetivo
 
 Este projeto de estudos, o último projeto do curso de Qualidade de Software da EBAC, busca comprovar a qualidade da aplicação de Ecommerce `Ebac shop Loja de teste`.
@@ -54,9 +75,6 @@ Para fazer realizar isso são executadas baterias de testes dos tipos:
 - API;
 - Teste não funcional de Performance;
 
-### 🎬 Ponto de partida
-
-Três casos de testes detalhados presentes em [histórias de usuários](./docs/M34%20-%20historias_de_usuario.pdf).
 
 ### 🍳 Responsabilidade
 
