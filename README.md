@@ -258,7 +258,7 @@ docker-compose up
 - Caso algum teste falhe será gerado um print da UI no momento do erro em `./UI/cypress/screenshots`
 - Há um resultado dessa bateria de testes em `./UI/mochawesome-report/result.html`.
   Você deve clicar no ícone de browser de sua preferência para visualizá-lo:
-  ![Relatório de testes de API](./API/apiReporter/api_report.jpg)
+  ![Relatório de UI Cypress](./UI/mochawesome-report/print-mochawesome.jpg)
 
 ---
 
@@ -270,7 +270,7 @@ docker-compose up
 4. Onde está escrito `Find and import dashboards for common applications at ` você coloca `2587`
 5. Em seguida nomeie o Dashboard como preferir, coloque o k6 como `k6influxdb` e aperte `Import`
 
-![Relatório de UI Cypress](./UI/mochawesome-report/print-mochawesome.jpg)
+![Relatório de Performance](./performance/report/report-performace-grafana.jpg)
 
 ---
 
@@ -278,7 +278,7 @@ docker-compose up
 
 > Caso você queira visualizar o report existente faça `pnpm allure open`.
 
-![Relatório de Mobile](Mobile/reports/overview.jpg)
+![Relatório de Mobile](./Mobile/reports/overview.jpg)
 
 <hr style="border-top: 3px solid #bbb;">
 
@@ -314,8 +314,6 @@ com 100% de sucesso. Caso contrário ela é automaticamente rejeitada.
 - `package.json`: Central do projeto. Tem tudo;
 - `grafana-dashboard.yaml`: Possibilita a visualização de relatórios de teste de performance através do Grafana;
 - `grafana-datasource.yaml`: Cria um banco de dados com InfluxDB para possibilitar a execução de testes de Performance;
-
----
 
 ### Dependências
 
