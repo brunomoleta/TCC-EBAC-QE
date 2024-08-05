@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "ddc983bd-e033-4814-9269-40c004f61f38",
     "name": "Loja da EBAC",
-    "description": "Testes manuais de GET e POST da rota de 'coupons'.\n\nNecessário autenticação.",
+    "description": "Testes manuais de 4 cenários de GET e 5 cenários de POST da rota de 'coupons' da API da Loja EBAC.\n\nTambém é testado o Login e Registro do Usuário.\n\nNecessário autenticação.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "28070364"
   },
@@ -21,8 +21,10 @@
               "    pm.expect(typeof jsonData.message).to.eql('string');\r",
               "    pm.expect(jsonData.message).to.include('Parâmetro(s) ausente(s)');\r",
               "    pm.expect(jsonData).to.have.property('data');\r",
-              "    pm.expect(jsonData.data).to.have.property('status', 400);\r",
               "    pm.expect(jsonData.data).to.have.property('params');\r",
+              "});\r",
+              "pm.test(\"Status code is 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
               "});"
             ],
             "type": "text/javascript",
@@ -113,6 +115,113 @@
       "response": []
     },
     {
+      "name": "Login - Success - Performance Test",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Ao inserir dados válidos retorna token de autenticação\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData.data).to.have.property('token');\r",
+              "    pm.expect(jsonData.data.token).to.be.a('string');\r",
+              "    pm.expect(jsonData.data.token).to.have.lengthOf.above(50);     \r",
+              "});\r",
+              "pm.test(\"Ao inserir dados válidos retorna mensagem de sucesso\", function () {\r",
+              "    const jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(jsonData).to.have.property('success');\r",
+              "    pm.expect(jsonData.success).to.eql(true);\r",
+              "    pm.expect(jsonData).to.have.property('message');\r",
+              "    pm.expect(jsonData.message).to.eql(\"login successfully\");\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"email\":\"user1_ebac@gmail.com\",\r\n\"password\":\"psw!ebac@test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/public/authuser",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["public", "authuser"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register - No Body 400 - Performance",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Deve retornar 400 se o cliente não enviou corpo de requisição\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "lojaebac.ebaconline.art.br/public/adduser",
+          "host": ["lojaebac", "ebaconline", "art", "br"],
+          "path": ["public", "adduser"]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "New Coupon - No Token",
       "event": [
         {
@@ -166,20 +275,22 @@
       "response": []
     },
     {
-      "name": "New Coupon - No Auth 403",
+      "name": "New Coupon - No Auth 401",
       "event": [
         {
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
+              "pm.test(\"Requisição autenticada porém sem autorização deve retornar 401\", function () {\r",
               "    const jsonData = pm.response.json();\r",
               "\r",
               "    pm.expect(jsonData).to.have.property('message');\r",
               "    pm.expect(typeof jsonData.message).to.eql('string');\r",
               "    pm.expect(jsonData.message).to.eql('Apenas administradores podem criar cupons.');\r",
-              "    pm.expect(jsonData).to.have.property('data');\r",
-              "    pm.expect(jsonData.data).to.have.property('status', 403);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Status code is 401\", function () {\r",
+              "    pm.response.to.have.status(401);\r",
               "});"
             ],
             "type": "text/javascript",
@@ -189,17 +300,7 @@
         {
           "listen": "prerequest",
           "script": {
-            "exec": [
-              "pm.test(\"Requisição autenticada porém sem autorização deve retornar 403\", function () {\r",
-              "    const jsonData = pm.response.json();\r",
-              "\r",
-              "    pm.expect(jsonData).to.have.property('message');\r",
-              "    pm.expect(typeof jsonData.message).to.eql('string');\r",
-              "    pm.expect(jsonData.message).to.eql('Apenas administradores podem criar cupons.');\r",
-              "    pm.expect(jsonData).to.have.property('data');\r",
-              "    pm.expect(jsonData.data).to.have.property('status', 403);\r",
-              "});"
-            ],
+            "exec": [""],
             "type": "text/javascript",
             "packages": {}
           }
@@ -211,7 +312,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "spokdasopdkasdopks",
+              "value": "{{token}}aasdas",
               "type": "string"
             }
           ]
@@ -288,7 +389,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n\"code\": \"nomeCupoma0000110\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
+          "raw": "{\r\n\"code\": \"nomeCupoma118740870\",\r\n\"amount\": \"10\",\r\n\"discount_type\": \"fixed_product\",\r\n\"description\": \"Cupom de desconto de teste\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
