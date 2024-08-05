@@ -30,13 +30,10 @@ jobs:
         with:
           browser: chrome
           headless: true
-          run: pnpm run cy:run
+          run: pnpm cy:run
 
       - name: Run Supertest API test suite
-        run: pnpm run test-api
-
-      - name: Run Webdriver IO Android device test suite
-        run: pnpm run test-mobile
+        run: pnpm test:api
 
       - name: Publish report
         run: mv ./mochawesome-report/* ./reports
