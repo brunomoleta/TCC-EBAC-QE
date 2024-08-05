@@ -9,13 +9,12 @@ envolvendo testes automatizados de UI, mobile e API.
 
 - [Visão Geral](#-visão-geral)
   - [Ponto de partida](#-ponto-de-partida)
-    - [Sistema](#-sistema-)
-    - [Ponto de partida](#-casos-de-testes)
+    - [Sistema](#-sistema)
+    - [Histórias de usuários](#-histórias-de-usuários)
   - [Objetivo](#-objetivo)
   - [Responsabilidade](#-responsabilidade)
   - [Público alvo](#-público-alvo)
   - [Estratégia de testes](#-Estratégia-de-testes)
-  - [Histórias de Usuário](#-histórias-de-usuário)
   - [Casos de testes](#-casos-de-testes)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Como executar o projeto](#-como-executar-o-projeto)
@@ -48,7 +47,7 @@ envolvendo testes automatizados de UI, mobile e API.
 
 ### 🎬 Ponto de partida
 
-#### 🎰 Sistema 
+#### 🎰 Sistema
 
 Ecommerce de roupas que tem funcionalidades de:
 
@@ -61,9 +60,9 @@ Ecommerce de roupas que tem funcionalidades de:
   - Métodos de pagamento;
 - Finalização da compra e acompanhamento da entrega;
 
-#### 👨🏽 Casos de teste
+#### 👨🏽 Histórias de usuários
 
-Casos de testes detalhados presentes em [histórias de usuários](./docs/M34%20-%20historias_de_usuario.pdf).
+Estas estão detalhadas em [histórias de usuários](./docs/M34%20-%20historias_de_usuario.pdf).
 
 ### 🥅 Objetivo
 
